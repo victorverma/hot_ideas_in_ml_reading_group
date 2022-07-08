@@ -101,4 +101,26 @@ Bayesian Neural Networks
     This property is due to SGD's use of noise.
 \end{frame}
 
+\begin{frame}{Effective dimensionality of a model}
+    The \textbf{effective dimensionality} of a model reflects how many well-determined parameters it has. It is defined as
+    \begin{equation*}
+        N_{\text{eff}}(\boldsymbol{H}, c) = \sum_{i = 1}^k \frac{\lambda_i}{\lambda_i + c},
+    \end{equation*}
+    where $\boldsymbol{H}$ is the Hessian of the loss at the appropriate local mode, $\lambda_1, \ldots, \lambda_k$ are $\boldsymbol{H}$'s eigenvalues, and $c$ is a regularization constant.
+    
+    \medskip
+    
+    A low effective dimensionality implies that significant compression is possible. Also, the effective dimensionality is a good proxy for generalization.
+\end{frame}
+
+\begin{frame}{Effective dimensionality of a model}
+    Fig.~\ref{fig:effective_dimensionality_and_test_loss} illustrates the last point on the previous slide. For CNNs with near-zero training loss, the pattern in the test loss closely resembles that in the effective dimensionality.
+    \begin{figure}
+        \centering
+        \includegraphics[width=\textwidth]{effective_dimensionality_and_test_loss}
+        \caption{Effective dimensionality and test loss for various CNNs trained on the CIFAR-100 image dataset. CNNs above the green curve have near-zero training loss. CNNs on the same yellow curve have the same number of parameters.}
+        \label{fig:effective_dimensionality_and_test_loss}
+    \end{figure}    
+\end{frame}
+
 \end{document}
