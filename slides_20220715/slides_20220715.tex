@@ -18,6 +18,11 @@
 \usepackage[utf8x]{inputenc}
 \usepackage{hyperref}
 \hypersetup{colorlinks=true}
+\usepackage{graphicx}
+\graphicspath{{./figures/}}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{amsmath}
 
 \title[Bayesian Neural Networks]{
 Bayesian Neural Networks
@@ -46,6 +51,54 @@ Bayesian Neural Networks
         \item Predictive accuracy
         \item Generalization performance
     \end{itemize}
+\end{frame}
+
+\begin{frame}{Sharp vs flat minima}
+    A minimum of a loss function can be \textbf{sharp} or \textbf{flat}.
+    \begin{itemize}
+        \item At a sharp minimum, the function has a narrow, deep hole (Fig.~\ref{fig:sharp_minimum}).
+        \item At a flat minimum, it has a broad, shallow hole (Fig.~\ref{fig:flat_minimum}).
+    \end{itemize}
+    
+    \begin{figure}
+        \centering
+        \begin{subfigure}[b]{0.4\textwidth}
+            \centering
+            \includegraphics[width=\textwidth]{sharp_minimum}
+            \caption{A sharp minimum}
+            \label{fig:sharp_minimum}
+        \end{subfigure}
+        \begin{subfigure}[b]{0.4\textwidth}
+            \centering
+            \includegraphics[width=\textwidth]{flat_minimum}
+            \caption{A flat minimum}
+            \label{fig:flat_minimum}
+        \end{subfigure}
+        \caption{Sharp and flat minima}
+        \label{fig:sharp_and_flat_minima}
+    \end{figure}
+\end{frame}
+
+\begin{frame}{Sharp vs flat minima}
+    Flat minima are preferable to sharp minima for two reasons:
+    \begin{itemize}
+        \item A sharp minimum corresponds to a tiny loss, which is typically caused by overfitting.
+        \item Flat minima are more robust and generalize better. This can seen in two ways:
+            \begin{itemize}
+                \item A flat minimum corresponds to a region in parameter space with high posterior uncertainty; samples from the region don't memorize irrelevant details of the training set.
+                \item A flat minimum has a short description length, i.e., few bits are needed to specify its location. This results in better generalization.
+            \end{itemize}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Sharp vs flat minima}
+    SGD (Stochastic Gradient Descent) tends to avoid sharp minima:
+    \begin{itemize}
+        \item A sharp minimum is in a region $\mathcal{A}$ of low evidence.
+        \item The evidence for $\mathcal{A}$ is proportional to $\int_{\mathcal{A}} e^{-\mathcal{L}(\boldsymbol{\theta})}\,d\boldsymbol{\theta}$, so this integral is small.
+        \item The integral is proportional to SGD's probability of entering $\mathcal{A}$, so SGD is unlikely to enter $\mathcal{A}$.
+    \end{itemize}
+    This property is due to SGD's use of noise.
 \end{frame}
 
 \end{document}
