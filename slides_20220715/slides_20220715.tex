@@ -148,6 +148,30 @@ Bayesian Neural Networks
     \textbf{Stochastic Weight Averaging with Gaussian Posterior (SWAG)} is an extension of SWA that approximates the posterior using a Gaussian distribution centered at the SWA solution. The approximation is $\mathcal{N}(\boldsymbol{\theta} | \hat{\boldsymbol{\theta}}, \boldsymbol{\Sigma})$, where $\hat{\boldsymbol{\theta}}$ is as on the previous slide and $\boldsymbol{\Sigma}$ is the sum of a diagonal matrix and a low-rank matrix computed from $\boldsymbol{\theta}_1, \ldots, \boldsymbol{\theta}_S$. SWAG can be used on large networks and offers improved accuracy.
 \end{frame}
 
+\begin{frame}{Deep ensembles}
+    Some methods approximate $p(\boldsymbol{\theta} | \mathcal{D})$ in a neighborhood of one of its modes. However, the posterior for a deep neural network could have many modes. Fitted functions at the same mode may be quite similar, while fitted functions at different modes may be very different. So, focusing on one mode can result in underestimation of uncertainty and poor generalization.
+    
+    \medskip
+    
+    The method of \textbf{deep ensembles} instead uses multiple modes $\hat{\boldsymbol{\theta}}_1, \ldots, \hat{\boldsymbol{\theta}}_M$:
+    \[
+    p(\boldsymbol{\theta} | \mathcal{D}) \approx \frac{1}{M}\sum_{m = 1}^M \delta(\boldsymbol{\theta} - \hat{\boldsymbol{\theta}}_m).
+    \]
+    The multiple modes can be obtained by varying random seeds, hyperparameters, or architecture.
+\end{frame}
+
+\begin{frame}{Deep ensembles}
+    Below are some extensions of deep ensembles:
+    \begin{itemize}
+        \item \textbf{Multi-SWAG} uses Gaussian distributions instead of point masses:
+        \[
+        p(\boldsymbol{\theta} | \mathcal{D}) \approx \frac{1}{M}\sum_{m = 1}^M \mathcal{N}(\boldsymbol{\theta} | \hat{\boldsymbol{\theta}}_m, \boldsymbol{\Sigma}_m).
+        \]
+        This makes it possible to generate arbitrarily many posterior samples.
+        \item \textbf{Bootstrap sampling} trains different ensemble members on different subsets of the data to increase diversity in the predictions.
+    \end{itemize}
+\end{frame}
+
 \begin{frame}{Generalization in Bayesian deep learning}
     "Being Bayesian" can improve
     \begin{itemize}
