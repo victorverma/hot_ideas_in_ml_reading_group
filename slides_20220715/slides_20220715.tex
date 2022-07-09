@@ -259,4 +259,35 @@ Bayesian Neural Networks
     \end{figure}    
 \end{frame}
 
+\begin{frame}{Double descent}
+    For an \textbf{over-parameterized model}, there are many more parameters than training points. Surprisingly, instead of overfitting, these models often generalize well. As the number of parameters increases, we see \textbf{double descent}. The test error decreases, then increases, then decreases again, as shown in Fig.~\ref{fig:double_descent}.
+    
+    \begin{figure}
+        \centering
+        \includegraphics[width=\textwidth]{double_descent}
+        \caption{Risk curves illustrating double descent}
+        \label{fig:double_descent}
+    \end{figure}
+\end{frame}
+
+\begin{frame}{Double descent}
+    Double descent can be alleviated by Bayesian model averaging. Fig.~\ref{fig:double_descent_and_bma} shows the test error of neural networks of various widths that were trained on CIFAR-100. SWAG mitigates double descent, while Multi-SWAG eliminates it.
+    \begin{figure}
+        \centering
+        \includegraphics[scale=0.5]{double_descent_and_bma}
+        \caption{An illustration of the effect of Bayesian model averaging on double descent}
+        \label{fig:double_descent_and_bma}
+    \end{figure}
+\end{frame}
+
+\begin{frame}{Double descent}
+    The effective dimensionality helps explain why double descent occurs. In Fig.~\ref{fig:double_descent_and_effective_dimensionality}, as the layer width increases, the effective dimensionality decreases, increases, and then decreases again. The lower the effective dimensionality, the better the model generalizes. This explains why the test error decreases, increases, and then decreases again.
+    \begin{figure}
+        \centering
+        \includegraphics[scale=0.5]{double_descent_and_effective_dimensionality}
+        \caption{The connection between double descent and the effective dimensionality}
+        \label{fig:double_descent_and_effective_dimensionality}
+    \end{figure}
+\end{frame}
+
 \end{document}
