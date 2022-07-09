@@ -78,6 +78,15 @@ Bayesian Neural Networks
     \end{figure}
 \end{frame}
 
+\begin{frame}{Learning the prior}
+    In more general situations, there are a few approaches that can be taken to choosing a prior:
+    \begin{itemize}
+        \item Cross-validation can be used to identify a good choice of hyperparameters, but it can be slow if there are many hyperparameters.
+        \item An empirical Bayes approach can be taken. E.g., if the hyperparameters are $\boldsymbol{\alpha}$ and $\boldsymbol{\beta}$, we could find the values that maximize $\log p(\mathcal{D} | \boldsymbol{\alpha}, \boldsymbol{\beta}) = \int \log p(\mathcal{D} | \boldsymbol{\theta})p(\boldsymbol{\theta} | \boldsymbol{\alpha}, \boldsymbol{\beta})\,d\boldsymbol{\theta}$. However, this can be computationally difficult.
+        \item A third approach is Bayesian transfer learning: estimating the posterior using one dataset and then using it as the prior with another dataset.
+    \end{itemize}
+\end{frame}
+
 \begin{frame}{Generalization in Bayesian deep learning}
     "Being Bayesian" can improve
     \begin{itemize}
