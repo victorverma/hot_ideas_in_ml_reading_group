@@ -133,6 +133,21 @@ Bayesian Neural Networks
     \end{itemize}
 \end{frame}
 
+\begin{frame}{Methods based on the SGD trajectory}
+    Under certain assumptions, with a fixed learning rate, iterates produced by stochastic gradient descent can be viewed as samples from a Gaussian approximation $\mathcal{N}(\boldsymbol{\theta} | \hat{\boldsymbol{\theta}}, \boldsymbol{\Sigma})$ to $p(\boldsymbol{\theta} | \mathcal{D})$, where $\hat{\boldsymbol{\theta}}$ is a local mode. With a constant learning rate, the sequence of iterates $\{\boldsymbol{\theta}_s\}$ doesn't converge to a local optimum. However, they do lie along the periphery of a point of good generalization. \textbf{Stochastic Weight Averaging (SWA)} computes $\bar{\boldsymbol{\theta}} = \sum_{s = 1}^S \boldsymbol{\theta}_s$, which should produce better generalization.
+    
+    \begin{figure}
+        \centering
+        \includegraphics[scale=0.5]{stochastic_weight_averaging}
+        \caption{An example instance of SWA}
+        \label{fig:stochastic_weight_averaging}
+    \end{figure}
+\end{frame}
+
+\begin{frame}{Methods based on the SGD trajectory}
+    \textbf{Stochastic Weight Averaging with Gaussian Posterior (SWAG)} is an extension of SWA that approximates the posterior using a Gaussian distribution centered at the SWA solution. The approximation is $\mathcal{N}(\boldsymbol{\theta} | \hat{\boldsymbol{\theta}}, \boldsymbol{\Sigma})$, where $\hat{\boldsymbol{\theta}}$ is as on the previous slide and $\boldsymbol{\Sigma}$ is the sum of a diagonal matrix and a low-rank matrix computed from $\boldsymbol{\theta}_1, \ldots, \boldsymbol{\theta}_S$. SWAG can be used on large networks and offers improved accuracy.
+\end{frame}
+
 \begin{frame}{Generalization in Bayesian deep learning}
     "Being Bayesian" can improve
     \begin{itemize}
