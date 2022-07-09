@@ -56,6 +56,28 @@ Bayesian Neural Networks
     \end{equation*}
 \end{frame}
 
+\begin{frame}{Gaussian priors}
+    Let
+    \[
+    f(\boldsymbol{x}; \boldsymbol{\theta}) = \boldsymbol{W_L}(\cdots\phi(\boldsymbol{W_1}\boldsymbol{x} + \boldsymbol{b_1})) + \boldsymbol{b_L};
+    \]
+    this is a multi-layer perceptron (MLP) with $L - 1$ layers and activation function $\phi$. When $L = 1$, this becomes
+    \[
+    f(\boldsymbol{x}; \boldsymbol{\theta}) = \boldsymbol{W_2}\phi(\boldsymbol{W_1}\boldsymbol{x} + \boldsymbol{b_1}) + \boldsymbol{b_2}.
+    \]
+    Specifying a prior entails specifying the distributions of the $\boldsymbol{W}_{\ell}$'s and the $\boldsymbol{b}_{\ell}$'s. Typically, Gaussian priors are used: $\boldsymbol{W}_{\ell} \sim \mathcal{N}(\boldsymbol{0}, \alpha_{\ell}^2\boldsymbol{I})$ and $\boldsymbol{b}_{\ell} \sim \mathcal{N}(\boldsymbol{0}, \beta_{\ell}^2\boldsymbol{I})$ for $\ell = 1, \ldots, L$.
+\end{frame}
+
+\begin{frame}{Gaussian priors}
+    Let $L = 2$, let $\phi$ be the sigmoid function, and let the input and output be linear. Each panel of Fig.~\ref{fig:mlp_priors} shows a sample of MLPs from a particular Gaussian prior.
+    \begin{figure}
+        \centering
+        \includegraphics[width=\textwidth]{mlp_priors}
+        \caption{Samples of MLPs from two different Gaussian priors}
+        \label{fig:mlp_priors}
+    \end{figure}
+\end{frame}
+
 \begin{frame}{Generalization in Bayesian deep learning}
     "Being Bayesian" can improve
     \begin{itemize}
