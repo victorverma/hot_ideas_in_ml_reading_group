@@ -172,6 +172,15 @@ Bayesian Neural Networks
     \end{itemize}
 \end{frame}
 
+\begin{frame}{Approximating the posterior predictive distribution}
+    Using one of the methods described on the preceding slides, we can compute an estimate $q(\boldsymbol{\theta})$ of $p(\boldsymbol{\theta} | \mathcal{D})$. Then
+    \begin{align*}
+        p(\boldsymbol{y} | \boldsymbol{x}, \mathcal{D}) &\approx \int q(\boldsymbol{\theta})p(\boldsymbol{y} | \boldsymbol{x}, \boldsymbol{\theta})\,d\boldsymbol{\theta} \\
+        &\approx \frac{1}{S}\sum_{s = 1}^S p(\boldsymbol{y} | \boldsymbol{f}(\boldsymbol{x}, \boldsymbol{\theta}^s)),
+    \end{align*}
+    where $\boldsymbol{\theta}^s \sim q(\boldsymbol{\theta})$.
+\end{frame}
+
 \begin{frame}{Generalization in Bayesian deep learning}
     "Being Bayesian" can improve
     \begin{itemize}
