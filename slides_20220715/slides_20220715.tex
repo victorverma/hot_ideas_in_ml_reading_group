@@ -298,6 +298,22 @@ Neural Networks, Gaussian Processes, and Their Siblings
     Gaussian processes
 \end{frame}
 
+\begin{frame}{Binary classification}
+    Suppose that $p(y_n | \boldsymbol{x}_n) = \text{Ber}(y_n | \phi(f_n))$. We have
+    \begin{align*}
+        \mathcal{L}(\boldsymbol{f}_X) &= \log p(\boldsymbol{y}, \boldsymbol{f}_X | \boldsymbol{X}) \\
+        &= \log[p(\boldsymbol{y} | \boldsymbol{f}_X, \boldsymbol{X})p(\boldsymbol{f}_X | \boldsymbol{X})] \\
+        &= \log p(\boldsymbol{y} | \boldsymbol{f}_X) + \log p(\boldsymbol{f}_X | \boldsymbol{X}) \\
+        &= \log p(\boldsymbol{y} | \boldsymbol{f}_X) -\frac{N}{2}\log 2\pi - \frac{1}{2}\log|\boldsymbol{K}_{X, X}| - \frac{1}{2}\boldsymbol{f}_X^T\boldsymbol{K}_{X, X}^{-1}\boldsymbol{f}_X. \\
+        \nabla\mathcal{L}(\boldsymbol{f}_X) &= \nabla\log p(\boldsymbol{y} | \boldsymbol{f}_X) - \boldsymbol{K}_{X, X}^{-1}\boldsymbol{f}_X. \\
+        \nabla^2 \mathcal{L}(\boldsymbol{f}_X) &= \nabla^2 \log p(\boldsymbol{y} | \boldsymbol{f}_X) - \boldsymbol{K}_{X, X}^{-1}.
+    \end{align*}
+    Let $\boldsymbol{\Lambda} = -\nabla^2 \log p(\boldsymbol{y} | \boldsymbol{f}_X)$. Then $\nabla^2 \mathcal{L} = -\boldsymbol{\Lambda} - \boldsymbol{K}_{X, X}^{-1}$. Let $\hat{\boldsymbol{f}}$ be the MAP. We can now compute a Laplace approximation to the posterior:
+    \[
+    p(\boldsymbol{f}_X | \mathcal{D}) \approx \mathcal{N}(\hat{\boldsymbol{f}}, -[\nabla^2 \mathcal{L}]^{-1}) = \mathcal{N}(\hat{\boldsymbol{f}}, (\boldsymbol{\Lambda} + \boldsymbol{K}_{X, X}^{-1})^{-1}).
+    \]
+\end{frame}
+
 \begin{frame}{Language Models are Few-Shot Learners}
     Language Models are Few-Shot Learners
 \end{frame}
