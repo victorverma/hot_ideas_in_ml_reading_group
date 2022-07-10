@@ -319,6 +319,38 @@ Neural Networks, Gaussian Processes, and Their Siblings
     Let $\boldsymbol{X} = \{\boldsymbol{x}_1, \ldots, \boldsymbol{x}_N\}$. Let $\boldsymbol{\mu}_X = (m(\boldsymbol{x}_1), \ldots, m(\boldsymbol{x}_N))$ and let $\boldsymbol{K}_{X, X}$ be the $N \times N$ matrix whose $(i, j)$-entry is $\mathcal{K}(\boldsymbol{x}_i, \boldsymbol{x}_j)$. Since $\boldsymbol{f}_X$ is multivariate Gaussian, $p(\boldsymbol{f}_X | \boldsymbol{X}) = \mathcal{N}(\boldsymbol{f}_X | \boldsymbol{\mu}_X, \boldsymbol{K}_{X, X})$.
 \end{frame}
 
+\begin{frame}{Mercer kernels}
+    The covariance function $\mathcal{K}$ of a GP is a \textbf{Mercer kernel}. In general, $\mathcal{K} : \mathcal{X} \times \mathcal{X} \to \mathbb{R}^+$ is a Mercer kernel if $\sum_{i = 1}^N \sum_{j = 1}^n \mathcal{K}(\boldsymbol{x}_i, \boldsymbol{x}_j)c_i c_j \ge 0$ for any distinct $\boldsymbol{x}_1, \ldots, \boldsymbol{x}_N \in \mathcal{X}$ and any $c_1, \ldots, c_N \in \mathbb{R}$.
+    
+    \medskip
+    
+    The most widely used kernel for inputs in a Euclidean space is the \textbf{radial basis function (RBF) kernel}, which is defined as
+    \[
+    \mathcal{K}(\boldsymbol{x}, \boldsymbol{x}') = \exp\left(-\frac{\|\boldsymbol{x} - \boldsymbol{x}'\|^2}{2\ell^2}\right).
+    \]
+    $\ell$ is called the \textbf{bandwidth} and can be interpreted as the distance over which we expect differences to matter.
+\end{frame}
+
+\begin{frame}{Regression}
+    Suppose that $y = f(\boldsymbol{x}) + \epsilon$, where $f$ is a GP and $\epsilon \sim \mathcal{N}(0, \sigma_y^2)$. We have data $\mathcal{D}$ consisting of $\boldsymbol{X} = \{\boldsymbol{x}_1, \ldots, \boldsymbol{x}_N\}$ and $\boldsymbol{y} = (y_1, \ldots, y_n)$. We want to compute the posterior predictive density for new data $\boldsymbol{X}_*$. For all $i$ and $j$, $\text{Cov}[y_i, y_j] = \text{Cov}[f_i, f_j] + \text{Cov}[\epsilon_i, \epsilon_j] = \mathcal{K}(\boldsymbol{x}_i, \boldsymbol{x}_j) + \sigma_y^2 \delta_{i j}$. This implies that $\text{Cov}[\boldsymbol{y} | \boldsymbol{X}] = \boldsymbol{K}_{X, X} + \sigma_y^2 \boldsymbol{I}_N$. Thus,
+    \[
+    \left(\begin{matrix} \boldsymbol{y} \\ \boldsymbol{f}_* \end{matrix}\right) = \mathcal{N}\left(\left(\begin{matrix} \boldsymbol{\mu}_X \\ \boldsymbol{\mu}_* \end{matrix}\right), \left(\begin{matrix} \boldsymbol{K}_{X, X} + \sigma_y^2 \boldsymbol{I}_N & \boldsymbol{K}_{X, *} \\ \boldsymbol{K}_{*, X} & \boldsymbol{K}_{*, *} \end{matrix}\right)\right),
+    \]
+    where $\boldsymbol{f}_*$ contains the noise-free function values for the test data.
+\end{frame}
+
+\begin{frame}{Regression}
+    Using facts about conditional densities for multivariate Gaussian random vectors, we can show that the desired posterior predictive density is
+    \[
+    p(\boldsymbol{f}_* | \mathcal{D}, \boldsymbol{X}_*) = \mathcal{N}(\boldsymbol{f}_* | \boldsymbol{\mu}_{* | X}, \boldsymbol{\Sigma}_{* | X}),
+    \]
+    where
+    \begin{align*}
+        \boldsymbol{\mu}_{* | X} &= \boldsymbol{\mu}_* + \boldsymbol{K}_{X, *}^T(\boldsymbol{K}_{X, X} + \sigma_y^2 \boldsymbol{I})^{-1}(\boldsymbol{y} - \boldsymbol{\mu}_X) \\
+        \boldsymbol{\Sigma}_{* | X} &= \boldsymbol{K}_{*, *} - \boldsymbol{K}_{X, *}^T(\boldsymbol{K}_{X, X} + \sigma_y^2 \boldsymbol{I})^{-1}\boldsymbol{K}_{X, *}\\
+    \end{align*}
+\end{frame}
+
 \begin{frame}{Binary classification}
     Suppose that $p(y_n | \boldsymbol{x}_n) = \text{Ber}(y_n | \phi(f_n))$. We have
     \begin{align*}
