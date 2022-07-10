@@ -298,6 +298,27 @@ Neural Networks, Gaussian Processes, and Their Siblings
     Gaussian processes
 \end{frame}
 
+\begin{frame}{Introduction}
+    Suppose that we have an input $\boldsymbol{x}$ and an  output $y$ related by an unknown input-output mapping $f$. We could perform inference on $f$ by putting a prior $p(f)$ on it, collecting data $\mathcal{D}$, and then computing the posterior $p(f | \mathcal{D})$.
+    
+    \medskip
+    
+    Gaussian processes provide one means for implementing this strategy. Let $f : \mathcal{X} \to \mathbb{R}$. Let $\boldsymbol{X} = \{\boldsymbol{x}_n \in \mathcal{X}\}_{n = 1}^N$ and let $\boldsymbol{f}_X = (f(\boldsymbol{x}_1), \ldots, f(\boldsymbol{x}_N))$. $f$ is a \textbf{Gaussian process (GP)} if $\boldsymbol{f}_X$ is jointly Gaussian for any $N$ and $\boldsymbol{x}_1, \ldots, \boldsymbol{x}_N$.
+    
+    \medskip
+    
+    A GP has a mean function $m(\boldsymbol{x}) \in \mathbb{R}$ and a covariance function $\mathcal{K}(\boldsymbol{x}, \boldsymbol{x}') \ge 0$. $\mathcal{K}$ is a \textbf{Mercer kernel}, which will be described shortly. We write $f(\boldsymbol{x}) \sim GP(m(\boldsymbol{x}), \mathcal{K}(\boldsymbol{x}, \boldsymbol{x}'))$.
+\end{frame}
+
+\begin{frame}{Introduction}
+    The mean and covariance functions satisfy
+    \begin{align*}
+        m(\boldsymbol{x}) &= \mathbb{E}[f(\boldsymbol{x})] \\
+        \mathcal{K}(\boldsymbol{x}, \boldsymbol{x}') &= \mathbb{E}[(f(\boldsymbol{x}) - m(\boldsymbol{x}))(f(\boldsymbol{x}') - m(\boldsymbol{x}'))^T].
+    \end{align*}
+    Let $\boldsymbol{X} = \{\boldsymbol{x}_1, \ldots, \boldsymbol{x}_N\}$. Let $\boldsymbol{\mu}_X = (m(\boldsymbol{x}_1), \ldots, m(\boldsymbol{x}_N))$ and let $\boldsymbol{K}_{X, X}$ be the $N \times N$ matrix whose $(i, j)$-entry is $\mathcal{K}(\boldsymbol{x}_i, \boldsymbol{x}_j)$. Since $\boldsymbol{f}_X$ is multivariate Gaussian, $p(\boldsymbol{f}_X | \boldsymbol{X}) = \mathcal{N}(\boldsymbol{f}_X | \boldsymbol{\mu}_X, \boldsymbol{K}_{X, X})$.
+\end{frame}
+
 \begin{frame}{Binary classification}
     Suppose that $p(y_n | \boldsymbol{x}_n) = \text{Ber}(y_n | \phi(f_n))$. We have
     \begin{align*}
