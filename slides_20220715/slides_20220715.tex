@@ -314,6 +314,14 @@ Neural Networks, Gaussian Processes, and Their Siblings
     \]
 \end{frame}
 
+\begin{frame}{Binary classification}
+    Let $q(\boldsymbol{f}_X | \mathcal{D})$ be the approximation to the posterior. We can approximate the posterior predictive distribution as
+    \[
+    p(y_* = 1 | \boldsymbol{x}_*, \mathcal{D}) = \int p(y_* = 1 | f_*)q(\boldsymbol{f}_* | \boldsymbol{x}_*, \mathcal{D})\,df_*.
+    \]
+    Using the probit approximation, this is roughly $\sigma(\kappa(v)E[f_*])$, where $v = V[f_*]$ and $\kappa^2(v) = (1 + \pi v / 8)^{-1}$.
+\end{frame}
+
 \begin{frame}{Language Models are Few-Shot Learners}
     Language Models are Few-Shot Learners
 \end{frame}
