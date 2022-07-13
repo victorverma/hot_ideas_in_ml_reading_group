@@ -100,15 +100,19 @@ Their Siblings
 \end{frame}
 
 \begin{frame}{Multi-Layer Perceptrons (MLPs)}
-    A \textbf{multi-layer perceptron (MLP)} consists of a series of linear layers. For example, a MLP with an input layer, a hidden layer, and an output layer can be written as
-    \[
-    f(\boldsymbol{x}; \boldsymbol{\theta}) = \phi_2(\boldsymbol{W_2}\phi_1(\boldsymbol{W_1}\boldsymbol{x} + \boldsymbol{b_1}) + \boldsymbol{b_2}).
-    \]
-    $\boldsymbol{W_1}$ contains the weights of the input layer-hidden layer connections, $\boldsymbol{b_1}$ contains the input-hidden biases, and $\phi_1$ is the input-hidden activation function. $\boldsymbol{W_2}$, $\boldsymbol{b_2}$, and $\phi_2$ are for going from the hidden layer to the output layer.
+    A \textbf{multi-layer perceptron (MLP)} consists of a series of \textbf{linear or fully-connected layers}. Fig.~\ref{fig:mlp} shows an example.
     
     \medskip
     
-    Fig.~\ref{fig:mlp} shows an example of a MLP.
+    A MLP with an input layer, one hidden layer, and an output layer can be written as
+    \[
+    f(\boldsymbol{x}; \boldsymbol{\theta}) = \phi_2(\boldsymbol{W_2}\phi_1(\boldsymbol{W_1}\boldsymbol{x} + \boldsymbol{b_1}) + \boldsymbol{b_2}).
+    \]
+    $\boldsymbol{W_1}$ contains the weights of the input layer-hidden layer connections, $\boldsymbol{b_1}$ contains the hidden layer neurons' biases, and $\phi_1$ is the activation function used in the hidden layer. $\boldsymbol{W_2}$, $\boldsymbol{b_2}$, and $\phi_2$ are defined similarly.
+    
+    \medskip
+    
+    Similar expressions can be written when there are multiple hidden layers.
 \end{frame}
 
 \section{Bayesian Neural Networks}
