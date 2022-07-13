@@ -85,6 +85,20 @@ Their Siblings
     \end{figure}    
 \end{frame}
 
+\begin{frame}{Activation Functions}
+    \begin{columns}
+        \column{0.55\textwidth}
+            Some examples of activation functions are the \textbf{sigmoid function} $a \mapsto \frac{1}{1 + e^{-a}}$, the \textbf{rectified linear unit (ReLU)} $a \mapsto \max(a, 0)$, and the \textbf{leaky ReLU} $a \mapsto\max(a, 0) + \alpha\min(a, 0)$.
+        \column{0.45\textwidth}
+            \begin{figure}
+                \centering
+                \includegraphics[scale=0.5]{activation_functions}
+                \caption{Some examples of activation functions \cite{pml2Book}.}
+                \label{fig:activation_functions}
+            \end{figure}
+    \end{columns}
+\end{frame}
+
 \begin{frame}{Multi-Layer Perceptrons (MLPs)}
     A \textbf{multi-layer perceptron (MLP)} consists of a series of linear layers. For example, a MLP with an input layer, a hidden layer, and an output layer can be written as
     \[
