@@ -115,6 +115,44 @@ Their Siblings
     Similar expressions can be written when there are multiple hidden layers.
 \end{frame}
 
+\begin{frame}{Convolutional Layers}
+    An image can be represented as a stack of matrices associated with different \textbf{channels}. For example, there can be channels for red, blue, and green.
+    
+    \medskip
+    
+    A \textbf{filter} or \textbf{kernel} is a stack of small matrices used to extract a particular feature of an image. \textbf{Convolution} is the process of using a filter for feature extraction. Let $\boldsymbol{X} \in \mathbb{R}^{H \times W \times C}$ be a $C$-channel $H \times W$ image. Let $W^{(d)} \in \mathbb{R}^{h \times w \times C}$ be the $d$th filter for $d = 1, \ldots, D$. Convolution produces a $D$-channel image; the $(i, j)$-entry in channel $d$ is
+    \[
+    \sum_{c = 0}^{C - 1} \sum_{u = 0}^{h - 1} \sum_{v = 0}^{w - 1} x_{i + u, j + v, c}w_{u, v, c}^{(d)}.
+    \]
+    See Fig.~\ref{fig:convolutional_layer} for an example.
+\end{frame}
+
+\begin{frame}{Convolutional Layers}
+    \begin{figure}
+        \centering
+        \includegraphics[scale=0.8]{convolutional_layer}
+        \caption{A convolutional layer with three input and two output channels \cite{pml2Book}.}
+        \label{fig:convolutional_layer}
+    \end{figure}
+\end{frame}
+
+\begin{frame}{Convolutional Neural Networks (CNNs)}
+    A \textbf{pooling layer} performs dimensionality reduction by taking the maximum or average over a patch.
+
+    \medskip
+
+    A convolutional neural network (CNN) consists of a series of convolutional layers, pooling layers, and linear layers. CNNs are frequently used in computer vision. Fig.~\ref{fig:cnn} shows a CNN used to classify images of handwritten digits.
+\end{frame}
+
+\begin{frame}{Convolutional Neural Networks (CNNs)}
+    \begin{figure}
+        \centering
+        \includegraphics[scale=0.8]{cnn}
+        \caption{A CNN used to classify images of handwritten digits \cite{pml2Book}.}
+        \label{fig:cnn}
+    \end{figure}
+\end{frame}
+
 \section{Bayesian Neural Networks}
 
 \begin{frame}{Bayesian Neural Networks}
