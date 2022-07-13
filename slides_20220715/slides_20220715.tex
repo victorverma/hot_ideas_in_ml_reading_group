@@ -26,6 +26,18 @@
 \usepackage{biblatex}
 \addbibresource{bibliography.bib}
 
+% From https://tex.stackexchange.com/a/178803/273247
+\AtBeginSection[]{
+  \begin{frame}
+  \vfill
+  \centering
+  \begin{beamercolorbox}[sep=8pt,center,shadow=true,rounded=true]{title}
+    \usebeamerfont{title}\insertsectionhead\par%
+  \end{beamercolorbox}
+  \vfill
+  \end{frame}
+}
+
 \title[NNs, GPs, and Their Siblings]{
 Neural Networks, Gaussian Processes, and \\
 Their Siblings
@@ -42,11 +54,11 @@ Their Siblings
 \end{frame}
 
 % Uncomment these lines for an automatically generated outline.
-%\begin{frame}{Outline}
-%  \tableofcontents
-%\end{frame}
+\begin{frame}{Outline}
+    \tableofcontents
+\end{frame}
 
-%\section{Introduction}
+\section{Neural Networks}
 
 \begin{frame}{Neural Networks}
     Some examples of neural networks are
@@ -55,6 +67,8 @@ Their Siblings
         \item Transformers
     \end{itemize}
 \end{frame}
+
+\section{Bayesian Neural Networks}
 
 \begin{frame}{Bayesian Neural Networks}
     Bayesian Neural Networks
@@ -305,9 +319,7 @@ Their Siblings
     \end{figure}
 \end{frame}
 
-\begin{frame}{Gaussian processes}
-    Gaussian processes
-\end{frame}
+\section{Gaussian Processes}
 
 \begin{frame}{Introduction}
     Suppose that we have an input $\boldsymbol{x}$ and an  output $y$ related by an unknown input-output mapping $f$. We could perform inference on $f$ by putting a prior $p(f)$ on it, collecting data $\mathcal{D}$, and then computing the posterior $p(f | \mathcal{D})$.
@@ -386,9 +398,7 @@ Their Siblings
     Using the probit approximation, this is roughly $\sigma(\kappa(v)E[f_*])$, where $v = V[f_*]$ and $\kappa^2(v) = (1 + \pi v / 8)^{-1}$.
 \end{frame}
 
-\begin{frame}{Language Models are Few-Shot Learners}
-    Language Models are Few-Shot Learners
-\end{frame}
+\section{Language Models are Few-Shot Learners}
 
 \begin{frame}{Introduction}
     The purpose of the paper is to show that scaling up language models greatly improves task-agnostic, few-shot performance. The authors demonstrated this by training a 175 billion parameter language model called GPT-3 and testing it on various NLP tasks. Among these tasks were
@@ -425,6 +435,8 @@ Their Siblings
         \item English-language Wikipedia
     \end{itemize}
 \end{frame}
+
+\section{}
 
 \begin{frame}{References}
     \nocite{*}
