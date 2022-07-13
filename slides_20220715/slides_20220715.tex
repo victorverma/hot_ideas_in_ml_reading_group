@@ -60,12 +60,29 @@ Their Siblings
 
 \section{Neural Networks}
 
-\begin{frame}{Neural Networks}
-    Some examples of neural networks are
-    \begin{itemize}
-        \item Multi-layer perceptrons (MLPs)
-        \item Transformers
-    \end{itemize}
+\begin{frame}{Introduction}
+    A \textbf{neural network (NN)} is a differentiable function that can be represented by a graph in which nodes represent primitive operations like matrix multiplication and edges or connections represent numeric data like vectors and matrices.
+    
+    \medskip
+    
+    Nodes are called \textbf{neurons}; edges are called \textbf{connections}. Connections have \textbf{weights} that are used to scale inputs. Let $\boldsymbol{x}$ be the vector of inputs for a neuron; let $\boldsymbol{w}$ be the vector of corresponding weights; let $y$ be the output. Then
+    \[
+    y = \phi(\boldsymbol{w}^T \boldsymbol{x} + b),
+    \]
+    where $\phi$ is a nonlinear function called the \textbf{activation function} and $b$ is a scalar called the \textbf{bias}.
+    
+    \medskip
+    
+    Nodes are often grouped into \textbf{layers}; a NN with many layers is called \textbf{deep}.
+\end{frame}
+
+\begin{frame}{Introduction}
+    \begin{figure}
+        \centering
+        \includegraphics[scale=0.8]{mlp.png}
+        \caption{A particular kind of neural network called a multi-layer perceptron (MLP).}
+        \label{fig:mlp}
+    \end{figure}    
 \end{frame}
 
 \begin{frame}{Multi-Layer Perceptrons (MLPs)}
@@ -78,15 +95,6 @@ Their Siblings
     \medskip
     
     Fig.~\ref{fig:mlp} shows an example of a MLP.
-\end{frame}
-
-\begin{frame}{Multi-Layer Perceptrons (MLPs)}
-    \begin{figure}
-        \centering
-        \includegraphics[scale=0.8]{mlp.png}
-        \caption{An example of a MLP.}
-        \label{fig:mlp}
-    \end{figure}
 \end{frame}
 
 \section{Bayesian Neural Networks}
