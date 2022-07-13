@@ -123,26 +123,26 @@ Neural Networks, Gaussian Processes, and Their Siblings
 \end{frame}
 
 \begin{frame}{Laplace approximation}
-    Write the neural network as a function $\boldsymbol{f}(\boldsymbol{x}; \boldsymbol{\theta}) \in \mathbb{R}^C$, where $\boldsymbol{\theta} \in \mathbb{R}^P$. Let $\boldsymbol{J}_{\boldsymbol{\theta}}(\boldsymbol{x}) \in \mathbb{R}^{C \times P}$ be the Jacobian of $\boldsymbol{f}$. Let $\boldsymbol{\Lambda}(\boldsymbol{y}; \boldsymbol{f}) = -\nabla_{\boldsymbol{f}}^2\log p(\boldsymbol{y} | \boldsymbol{f})$; this is a per-input noise term.
-    
-    \medskip
-
-    Suppose that we use a Gaussian prior, $p(\boldsymbol{\theta}) = \mathcal{N}(\boldsymbol{\theta} | \boldsymbol{m}_0, \boldsymbol{S}_0)$. The Laplace approximation of the posterior $p(\boldsymbol{\theta} | \mathcal{D})$ is the $\mathcal{N}(\boldsymbol{\theta}^*, \boldsymbol{\Sigma}_{\text{GGN}})$ distribution, where $\boldsymbol{\theta}^*$ is the MAP estimate and
-    \[
-    \boldsymbol{\Sigma}_{\text{GGN}} = \left(\sum_{n = 1}^N \boldsymbol{J}_{\boldsymbol{\theta}^*}(\boldsymbol{x}_n)^T\boldsymbol{\Lambda}(\boldsymbol{y}_n; \boldsymbol{f}_n)\boldsymbol{J}_{\boldsymbol{\theta}^*}(\boldsymbol{x}_n) + \boldsymbol{S}_0^{-1}\right)^{-1}.
-    \]
+    Let $\mathcal{E}(\boldsymbol{\theta}) = -\log p(\boldsymbol{\theta}, \mathcal{D})$; $\mathcal{E}$ is called the \textbf{energy}. Then $p(\boldsymbol{\theta} | \mathcal{D}) \propto e^{-\mathcal{E}(\boldsymbol{\theta})}$.
+    Letting $\hat{\boldsymbol{\theta}}$ be the MAP estimate, we have
+    \begin{align*}
+        \mathcal{E}(\boldsymbol{\theta}) &\approx \mathcal{E}(\hat{\boldsymbol{\theta}}) + (\boldsymbol{\theta} - \hat{\boldsymbol{\theta}})^T \nabla\mathcal{E}(\hat{\boldsymbol{\theta}}) + \frac{1}{2}(\boldsymbol{\theta} - \hat{\boldsymbol{\theta}})^T \boldsymbol{H}(\boldsymbol{\theta} - \hat{\boldsymbol{\theta}}) \\
+        &\approx \mathcal{E}(\hat{\boldsymbol{\theta}}) + \frac{1}{2}(\boldsymbol{\theta} - \hat{\boldsymbol{\theta}})^T \boldsymbol{H}(\boldsymbol{\theta} - \hat{\boldsymbol{\theta}}) \\
+        p(\boldsymbol{\theta}, \mathcal{D}) &\approx e^{-\mathcal{E}(\hat{\boldsymbol{\theta}})}\exp\left[-\frac{1}{2}(\boldsymbol{\theta} - \hat{\boldsymbol{\theta}})^T \boldsymbol{H}(\boldsymbol{\theta} - \hat{\boldsymbol{\theta}})\right] \\
+        p(\boldsymbol{\theta} | \mathcal{D}) &\approx \text{constant} \cdot \exp\left[-\frac{1}{2}(\boldsymbol{\theta} - \hat{\boldsymbol{\theta}})^T \boldsymbol{H}(\boldsymbol{\theta} - \hat{\boldsymbol{\theta}})\right].
+    \end{align*}
+    Hence, $p(\boldsymbol{\theta} | \mathcal{D}) \approx \mathcal{N}(\boldsymbol{\theta} | \hat{\boldsymbol{\theta}}, \boldsymbol{H}^{-1})$, the \textbf{Laplace approximation} to $p(\boldsymbol{\theta} | \mathcal{D})$.
 \end{frame}
 
 \begin{frame}{Laplace approximation}
-    Advantages of Laplace approximation:
-    \begin{itemize}
-        \item It's simple.
-        \item It can be used on a pretrained model.
-    \end{itemize}
-    Disadvantages:
-    \begin{itemize}
-        \item The approximation produced is highly local, because it's based on the Hessian at the MAP. This means that it can suffer badly from local optima - the approximation can be good locally, but bad overall.
-    \end{itemize}
+    Let $\boldsymbol{f}(\boldsymbol{x}; \boldsymbol{\theta}) \in \mathbb{R}^C$ be a neural network, where $\boldsymbol{\theta} \in \mathbb{R}^P$. Let $\boldsymbol{J}_{\boldsymbol{\theta}}(\boldsymbol{x}) \in \mathbb{R}^{C \times P}$ be the Jacobian of $\boldsymbol{f}$. Let $\boldsymbol{\Lambda}(\boldsymbol{y}; \boldsymbol{f}) = -\nabla_{\boldsymbol{f}}^2\log p(\boldsymbol{y} | \boldsymbol{f})$; this is the per-input noise term.
+    
+    \medskip
+
+    If we use a Gaussian prior, $p(\boldsymbol{\theta}) = \mathcal{N}(\boldsymbol{\theta} | \boldsymbol{m}_0, \boldsymbol{S}_0)$, then the Laplace approximation to the posterior $p(\boldsymbol{\theta} | \mathcal{D})$ will be the $\mathcal{N}(\hat{\boldsymbol{\theta}}, \boldsymbol{\Sigma}_{\text{GGN}})$ distribution, where $\hat{\boldsymbol{\theta}}$ is the MAP estimate and
+    \[
+    \boldsymbol{\Sigma}_{\text{GGN}} = \left(\sum_{n = 1}^N \boldsymbol{J}_{\hat{\boldsymbol{\theta}}}(\boldsymbol{x}_n)^T\boldsymbol{\Lambda}(\boldsymbol{y}_n; \boldsymbol{f}_n)\boldsymbol{J}_{\hat{\boldsymbol{\theta}}}(\boldsymbol{x}_n) + \boldsymbol{S}_0^{-1}\right)^{-1}.
+    \]
 \end{frame}
 
 \begin{frame}{Methods based on the SGD trajectory}
