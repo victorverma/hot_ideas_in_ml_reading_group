@@ -488,7 +488,7 @@ Their Siblings
     \[
     p(y_* = 1 | \boldsymbol{x}_*, \mathcal{D}) = \int p(y_* = 1 | f_*)q(\boldsymbol{f}_* | \boldsymbol{x}_*, \mathcal{D})\,df_*.
     \]
-    Using the probit approximation, this is roughly $\sigma(\kappa(v)E[f_*])$, where $v = V[f_*]$ and $\kappa^2(v) = (1 + \pi v / 8)^{-1}$.
+    This can be approximated as $\sigma(\kappa(v)E[f_*])$, where $\sigma$ is the sigmoid function, $v = V[f_*]$, and $\kappa^2(v) = (1 + \pi v / 8)^{-1}$.
 \end{frame}
 
 \section{Language Models are Few-Shot Learners}
