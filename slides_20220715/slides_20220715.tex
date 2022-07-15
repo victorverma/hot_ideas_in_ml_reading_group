@@ -532,8 +532,28 @@ Their Siblings
     where
     \begin{align*}
         \boldsymbol{\mu}_{* | X} &= \boldsymbol{\mu}_* + \boldsymbol{K}_{X, *}^T(\boldsymbol{K}_{X, X} + \sigma_y^2 \boldsymbol{I})^{-1}(\boldsymbol{y} - \boldsymbol{\mu}_X) \\
-        \boldsymbol{\Sigma}_{* | X} &= \boldsymbol{K}_{*, *} - \boldsymbol{K}_{X, *}^T(\boldsymbol{K}_{X, X} + \sigma_y^2 \boldsymbol{I})^{-1}\boldsymbol{K}_{X, *}\\
+        \boldsymbol{\Sigma}_{* | X} &= \boldsymbol{K}_{*, *} - \boldsymbol{K}_{X, *}^T(\boldsymbol{K}_{X, X} + \sigma_y^2 \boldsymbol{I})^{-1}\boldsymbol{K}_{X, *}.
     \end{align*}
+    When there is just one test point,
+    \begin{align*}
+        \begin{split}
+            p(f_* | \mathcal{D}, \boldsymbol{x}_*) &= \mathcal{N}(f_* | m_* + \boldsymbol{k}_*^T(\boldsymbol{K}_{X, X} + \sigma_y^2 \boldsymbol{I})^{-1}(\boldsymbol{y} - \boldsymbol{\mu}_X), \\
+            &\qquad k_{*, *} - \boldsymbol{k}_*^T(\boldsymbol{K}_{X, X} + \sigma_y^2 \boldsymbol{I})^{-1}\boldsymbol{k}_*).
+        \end{split}
+    \end{align*}
+\end{frame}
+
+\begin{frame}{Regression}
+    If the mean function is zero, then the posterior predictive mean becomes
+    \[
+    \mu_{* | X} = \boldsymbol{k}_*^T \boldsymbol{\alpha}
+    \]
+    where
+    \begin{align*}
+        \boldsymbol{\alpha} &= \boldsymbol{K}_{\sigma}^{-1}\boldsymbol{y} \\
+        \boldsymbol{K}_{\sigma} &= \boldsymbol{K}_{X, X} + \sigma_y^2 \boldsymbol{I}.
+    \end{align*}
+    Fitting the model entails calculating $\boldsymbol{\alpha}$. This can be done in $O(N^3)$ time using a Cholesky decomposition $\boldsymbol{L}\boldsymbol{L}^T$ of $\boldsymbol{K}_{\sigma}$. 
 \end{frame}
 
 \begin{frame}{Binary classification}
@@ -631,6 +651,13 @@ Their Siblings
         \caption{The computation of the output (sizes are for GPT-2) \cite{alammar2019}.}
         \label{fig:gpt3_output}
     \end{figure}
+\end{frame}
+
+\begin{frame}{GPT-3 Applications}
+    Below are links to some applications of GPT-3:
+    \begin{itemize}
+        \item \href{https://openai.com/dall-e-2/}{DALL-E 2}
+    \end{itemize}
 \end{frame}
 
 \section{References}
