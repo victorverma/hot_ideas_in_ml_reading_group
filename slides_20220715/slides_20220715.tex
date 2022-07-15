@@ -244,22 +244,14 @@ Their Siblings
 \end{frame}
 
 \begin{frame}{Gaussian Priors}
-    Let
-    \[
-    f(\boldsymbol{x}; \boldsymbol{\theta}) = \boldsymbol{W_L}(\cdots\varphi(\boldsymbol{W_1}\boldsymbol{x} + \boldsymbol{b_1})) + \boldsymbol{b_L};
-    \]
-    this is a multi-layer perceptron (MLP) with $L - 1$ layers and activation function $\varphi$. When $L = 1$, this becomes
-    \[
-    f(\boldsymbol{x}; \boldsymbol{\theta}) = \boldsymbol{W_2}\varphi(\boldsymbol{W_1}\boldsymbol{x} + \boldsymbol{b_1}) + \boldsymbol{b_2}.
-    \]
-    Specifying a prior entails specifying the distributions of the $\boldsymbol{W}_{\ell}$'s and the $\boldsymbol{b}_{\ell}$'s. Typically, Gaussian priors are used: $\boldsymbol{W}_{\ell} \sim \mathcal{N}(\boldsymbol{0}, \alpha_{\ell}^2\boldsymbol{I})$ and $\boldsymbol{b}_{\ell} \sim \mathcal{N}(\boldsymbol{0}, \beta_{\ell}^2\boldsymbol{I})$ for $\ell = 1, \ldots, L$.
-\end{frame}
-
-\begin{frame}{Gaussian Priors}
-    Let $L = 2$, let $\varphi$ be the sigmoid function, and let the input and output be linear. Each panel of Fig.~\ref{fig:mlp_priors} shows a sample of MLPs from a particular Gaussian prior.
+    Let $f(\boldsymbol{x}; \boldsymbol{\theta})$ be a $L$-layer MLP with weight matrices $\boldsymbol{W_1}, \ldots, \boldsymbol{W_L}$ and bias vectors $\boldsymbol{b_1}, \ldots, \boldsymbol{b_L}$. Specifying a prior entails specifying the distributions of the $\boldsymbol{W}_{\ell}$'s and the $\boldsymbol{b}_{\ell}$'s. Typically, Gaussian priors are used: $\boldsymbol{W}_{\ell} \sim \mathcal{N}(\boldsymbol{0}, \alpha_{\ell}^2\boldsymbol{I})$ and $\boldsymbol{b}_{\ell} \sim \mathcal{N}(\boldsymbol{0}, \beta_{\ell}^2\boldsymbol{I})$ for $\ell = 1, \ldots, L$.
+    
+    \medskip
+    
+    Each panel of Fig.~\ref{fig:mlp_priors} shows a sample of 2-layer, sigmoid activation function MLPs from a particular Gaussian prior.
     \begin{figure}
         \centering
-        \includegraphics[width=\textwidth]{mlp_priors}
+        \includegraphics[scale=0.45]{mlp_priors}
         \caption{Samples of MLPs from two different Gaussian priors \cite{pml2Book}.}
         \label{fig:mlp_priors}
     \end{figure}
