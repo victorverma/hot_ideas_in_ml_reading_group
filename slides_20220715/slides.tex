@@ -312,7 +312,7 @@ Their Siblings
 \end{frame}
 
 \begin{frame}{Methods Based on the SGD Trajectory}
-    Under certain assumptions, with a fixed learning rate, iterates produced by stochastic gradient descent can be viewed as samples from a Gaussian approximation $\mathcal{N}(\boldsymbol{\theta} | \hat{\boldsymbol{\theta}}, \boldsymbol{\Sigma})$ to $p(\boldsymbol{\theta} | \mathcal{D})$, where $\hat{\boldsymbol{\theta}}$ is a local mode. With a constant learning rate, the sequence of iterates $\{\boldsymbol{\theta}_s\}$ doesn't converge to a local optimum. However, they do lie along the periphery of a point of good generalization. \textbf{Stochastic Weight Averaging (SWA)} computes $\bar{\boldsymbol{\theta}} = \sum_{s = 1}^S \boldsymbol{\theta}_s$, which should produce better generalization.
+    Under certain assumptions, with a fixed learning rate, iterates produced by SGD can be viewed as samples from a Gaussian approximation $\mathcal{N}(\boldsymbol{\theta} | \hat{\boldsymbol{\theta}}, \boldsymbol{\Sigma})$ to $p(\boldsymbol{\theta} | \mathcal{D})$, where $\hat{\boldsymbol{\theta}}$ is a local mode. With a constant learning rate, the sequence of iterates $\{\boldsymbol{\theta}_s\}$ doesn't converge to a local optimum. However, they do lie along the periphery of a point of good generalization. \textbf{Stochastic Weight Averaging (SWA)} computes $\bar{\boldsymbol{\theta}} = \sum_{s = 1}^S \boldsymbol{\theta}_s$, which should produce better generalization.
     
     \begin{figure}
         \centering
@@ -464,7 +464,7 @@ Their Siblings
 \end{frame}
 
 \begin{frame}{Double Descent}
-    The effective dimensionality helps explain why double descent occurs. In Fig.~\ref{fig:double_descent_and_effective_dimensionality}, as the layer width increases, the effective dimensionality decreases, increases, and then decreases again. The lower the effective dimensionality, the better the model generalizes. This explains why the test error decreases, increases, and then decreases again.
+    The effective dimensionality helps explain why double descent occurs. In Fig.~\ref{fig:double_descent_and_effective_dimensionality}, as the layer width increases, the effective dimensionality decreases, increases, and then decreases again. The lower the effective dimensionality, the better the model generalizes. This suggests why the test error decreases, increases, and then decreases again.
     \begin{figure}
         \centering
         \includegraphics[scale=0.35]{double_descent_and_effective_dimensionality}
