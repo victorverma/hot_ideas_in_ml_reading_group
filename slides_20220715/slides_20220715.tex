@@ -161,6 +161,36 @@ Their Siblings
     A \textbf{recurrent neural network} is a NN that contains a recurrent layer.
 \end{frame}
 
+\begin{frame}{Attention Layers}
+    Let $\boldsymbol{X} \in \mathbb{R}^{n \times d_k}$, let $\boldsymbol{Y} \in \mathbb{R}^{n \times d_v}$, and let $\boldsymbol{x} \in \mathbb{R}^{d_k}$. We want to predict the output for $\boldsymbol{x}$ based on the inputs in $\boldsymbol{X}$ and their associated outputs in $\boldsymbol{Y}$.
+    
+    \medskip
+    
+    For some $\boldsymbol{W}^K, \boldsymbol{W}^V \in \mathbb{R}^{n \times n}$ and some $\boldsymbol{W}^Q \in \mathbb{R}^{d_k \times d_k}$, let $\boldsymbol{K} = \boldsymbol{W}^K \boldsymbol{X}$, $\boldsymbol{V} = \boldsymbol{W}^V \boldsymbol{Y}$, and $\boldsymbol{q} = \boldsymbol{W}^Q \boldsymbol{x}$. $\boldsymbol{K}$ contains the \textbf{keys}, $\boldsymbol{V}$ contains the \textbf{values}, and $\boldsymbol{q}$ is the \textbf{query}. We'll predict the value for $\boldsymbol{q}$ using $\boldsymbol{K}$ and $\boldsymbol{V}$.
+    
+    \medskip
+    
+    Let $a(\boldsymbol{q}, \boldsymbol{k}_i)$ be the $i$th \textbf{attention score}, which measures the similarity between $\boldsymbol{q}$ and $\boldsymbol{k}_i$. Let the $i$th \textbf{attention weight} be
+    \[
+    \alpha_i(\boldsymbol{q}, \boldsymbol{k}_{1:n}) = \frac{\exp(a(\boldsymbol{q}, \boldsymbol{k}_i))}{\sum_{j = 1}^n \exp(a(\boldsymbol{q}, \boldsymbol{k}_j))}.
+    \]
+    The predictied value for $\boldsymbol{q}$ is then $\sum_{i = 1}^n \alpha_i(\boldsymbol{q}, \boldsymbol{k}_{1:n}) \boldsymbol{v}_i$.
+    
+    \medskip
+
+    An \textbf{attention layer} predicts in this way; it's parameterized by $\boldsymbol{W}^K$, $\boldsymbol{W}^V$, and $\boldsymbol{W}^Q$. 
+\end{frame}
+
+\begin{frame}{Attention Layers}
+    There are several useful modifications of the basic attention layer:
+    \begin{itemize}
+        \item In a \textbf{masked attention} layer, attention scores are set to emphasize certain values and de-emphasize others.
+        \item A \textbf{multi-head attention} layer consists of a stack of basic attention layers with outputs (heads) $\boldsymbol{h}_1, \ldots, \boldsymbol{h}_h$; the final output is
+        $\text{Concat}(\boldsymbol{h}_1, \ldots, \boldsymbol{h}_h)\boldsymbol{W}^O$ for some weight matrix $\boldsymbol{W}^O$.
+    \end{itemize}
+    The idea of \textbf{self-attention} is also useful; it refers to using the output of an attention layer as the input for another attention layer.
+\end{frame}
+
 \section{Bayesian Neural Networks}
 
 \begin{frame}{Bayesian Neural Networks}
