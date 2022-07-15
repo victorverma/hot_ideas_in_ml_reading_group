@@ -316,7 +316,7 @@ Their Siblings
     
     \begin{figure}
         \centering
-        \includegraphics[scale=0.5]{stochastic_weight_averaging}
+        \includegraphics[scale=0.45]{stochastic_weight_averaging}
         \caption{An example instance of SWA \cite{pml2Book}.}
         \label{fig:stochastic_weight_averaging}
     \end{figure}
@@ -436,7 +436,7 @@ Their Siblings
     Fig.~\ref{fig:effective_dimensionality_and_test_loss} illustrates the last point on the previous slide. For CNNs with near-zero training loss, the pattern in the test loss closely resembles that in the effective dimensionality.
     \begin{figure}
         \centering
-        \includegraphics[width=\textwidth]{effective_dimensionality_and_test_loss}
+        \includegraphics[scale=0.55]{effective_dimensionality_and_test_loss}
         \caption{Effective dimensionality and test loss for various CNNs trained on the CIFAR-100 image dataset \cite{pml2Book}. CNNs above the green curve have near-zero training loss. CNNs on the same yellow curve have the same number of parameters.}
         \label{fig:effective_dimensionality_and_test_loss}
     \end{figure}    
@@ -457,7 +457,7 @@ Their Siblings
     Double descent can be alleviated by Bayesian model averaging. Fig.~\ref{fig:double_descent_and_bma} shows the test error of neural networks of various widths that were trained on CIFAR-100. SWAG mitigates double descent, while Multi-SWAG eliminates it.
     \begin{figure}
         \centering
-        \includegraphics[scale=0.5]{double_descent_and_bma}
+        \includegraphics[scale=0.45]{double_descent_and_bma}
         \caption{An illustration of the effect of Bayesian model averaging on double descent \cite{pml2Book}.}
         \label{fig:double_descent_and_bma}
     \end{figure}
@@ -467,7 +467,7 @@ Their Siblings
     The effective dimensionality helps explain why double descent occurs. In Fig.~\ref{fig:double_descent_and_effective_dimensionality}, as the layer width increases, the effective dimensionality decreases, increases, and then decreases again. The lower the effective dimensionality, the better the model generalizes. This explains why the test error decreases, increases, and then decreases again.
     \begin{figure}
         \centering
-        \includegraphics[scale=0.4]{double_descent_and_effective_dimensionality}
+        \includegraphics[scale=0.35]{double_descent_and_effective_dimensionality}
         \caption{The connection between double descent and the effective dimensionality \cite{pml2Book}.}
         \label{fig:double_descent_and_effective_dimensionality}
     \end{figure}
