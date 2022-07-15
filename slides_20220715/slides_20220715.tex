@@ -191,6 +191,45 @@ Their Siblings
     The idea of \textbf{self-attention} is also useful; it refers to using the output of an attention layer as the input for another attention layer.
 \end{frame}
 
+\begin{frame}{Encoder-Decoder Transformers}
+    An \textbf{encoder-decoder transformer} is a kind of NN useful for sequential data, like sentences; see Fig.~\ref{fig:encoder_decoder_transformer} for an example. 
+    
+    \medskip
+    
+    Because of how the attention process works, the result of an attention layer doesn't depend on the order of the inputs. To address this, each input token $\boldsymbol{x}$ is first incremented by a \textbf{positional encoding} vector $\boldsymbol{u}$ that encodes $\boldsymbol{x}$'s position in the sequence.
+\end{frame}
+
+\begin{frame}{Encoder-Decoder Transformers}
+    The encoder operates as follows on the input tokens $\boldsymbol{X}$:
+    \begin{itemize}
+        \item $\boldsymbol{X}$ is passed through an attention layer.
+        \item $\boldsymbol{X}$ is incremented by the attention layer outputs $\boldsymbol{Z}$.
+        \item The updated $\boldsymbol{X}$ is normalized to prevent the use of masked attention from skewing the results.
+        \item The data is passed through an MLP.
+        \item The data is normalized again.
+    \end{itemize} 
+\end{frame}
+
+\begin{frame}{Encoder-Decoder Transformers}
+    The decoder operates as follows on the output of the encoder:
+    \begin{itemize}
+        \item An attention block attends to all previously generated tokens $\boldsymbol{y}_{1:t - 1}$ and computes an encoding $\boldsymbol{H}_y$.
+        \item An encoder-decoder attention block attends to $\boldsymbol{H}_x$ and $\boldsymbol{H}_y$; these are combined to produce a matrix $\boldsymbol{Z}$, which compares the output to the input.
+        \item $\boldsymbol{Z}$ is normalized, fed into a MLP, and then normalized again.
+        \item $\boldsymbol{Z}$ is fed into a MLP that produces logits.
+        \item The logits are softmaxed into probabilities.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Encoder-Decoder Transformers}
+    \begin{figure}
+        \centering
+        \includegraphics[scale=0.6]{encoder_decoder_transformer}
+        \caption{A transformer with two encoder blocks and two decoder blocks \cite{pml2Book}.}
+        \label{fig:encoder_decoder_transformer}
+    \end{figure}
+\end{frame}
+
 \section{Bayesian Neural Networks}
 
 \begin{frame}{Bayesian Neural Networks}
