@@ -247,7 +247,7 @@ Their Siblings
     \end{equation*}
 \end{frame}
 
-\begin{frame}{Gaussian priors}
+\begin{frame}{Gaussian Priors}
     Let
     \[
     f(\boldsymbol{x}; \boldsymbol{\theta}) = \boldsymbol{W_L}(\cdots\varphi(\boldsymbol{W_1}\boldsymbol{x} + \boldsymbol{b_1})) + \boldsymbol{b_L};
@@ -259,7 +259,7 @@ Their Siblings
     Specifying a prior entails specifying the distributions of the $\boldsymbol{W}_{\ell}$'s and the $\boldsymbol{b}_{\ell}$'s. Typically, Gaussian priors are used: $\boldsymbol{W}_{\ell} \sim \mathcal{N}(\boldsymbol{0}, \alpha_{\ell}^2\boldsymbol{I})$ and $\boldsymbol{b}_{\ell} \sim \mathcal{N}(\boldsymbol{0}, \beta_{\ell}^2\boldsymbol{I})$ for $\ell = 1, \ldots, L$.
 \end{frame}
 
-\begin{frame}{Gaussian priors}
+\begin{frame}{Gaussian Priors}
     Let $L = 2$, let $\varphi$ be the sigmoid function, and let the input and output be linear. Each panel of Fig.~\ref{fig:mlp_priors} shows a sample of MLPs from a particular Gaussian prior.
     \begin{figure}
         \centering
@@ -269,7 +269,7 @@ Their Siblings
     \end{figure}
 \end{frame}
 
-\begin{frame}{Learning the prior}
+\begin{frame}{Learning the Prior}
     In more general situations, there are a few approaches that can be taken to choosing a prior:
     \begin{itemize}
         \item Cross-validation can be used to identify a good choice of hyperparameters, but it can be slow if there are many hyperparameters.
@@ -301,7 +301,7 @@ Their Siblings
     \end{itemize}
 \end{frame}
 
-\begin{frame}{Laplace approximation}
+\begin{frame}{Laplace Approximation}
     Let $\mathcal{E}(\boldsymbol{\theta}) = -\log p(\boldsymbol{\theta}, \mathcal{D})$; $\mathcal{E}$ is called the \textbf{energy}. Then $p(\boldsymbol{\theta} | \mathcal{D}) \propto e^{-\mathcal{E}(\boldsymbol{\theta})}$.
     Letting $\hat{\boldsymbol{\theta}}$ be the MAP estimate, we have
     \begin{align*}
@@ -313,7 +313,7 @@ Their Siblings
     Hence, $p(\boldsymbol{\theta} | \mathcal{D}) \approx \mathcal{N}(\boldsymbol{\theta} | \hat{\boldsymbol{\theta}}, \boldsymbol{H}^{-1})$, the \textbf{Laplace approximation} to $p(\boldsymbol{\theta} | \mathcal{D})$.
 \end{frame}
 
-\begin{frame}{Laplace approximation}
+\begin{frame}{Laplace Approximation}
     Let $\boldsymbol{f}(\boldsymbol{x}; \boldsymbol{\theta}) \in \mathbb{R}^C$ be a neural network, where $\boldsymbol{\theta} \in \mathbb{R}^P$. Let $\boldsymbol{J}_{\boldsymbol{\theta}}(\boldsymbol{x}) \in \mathbb{R}^{C \times P}$ be the Jacobian of $\boldsymbol{f}$. Let $\boldsymbol{\Lambda}(\boldsymbol{y}; \boldsymbol{f}) = -\nabla_{\boldsymbol{f}}^2\log p(\boldsymbol{y} | \boldsymbol{f})$; this is the per-input noise term.
     
     \medskip
@@ -324,7 +324,7 @@ Their Siblings
     \]
 \end{frame}
 
-\begin{frame}{Methods based on the SGD trajectory}
+\begin{frame}{Methods Based on the SGD Trajectory}
     Under certain assumptions, with a fixed learning rate, iterates produced by stochastic gradient descent can be viewed as samples from a Gaussian approximation $\mathcal{N}(\boldsymbol{\theta} | \hat{\boldsymbol{\theta}}, \boldsymbol{\Sigma})$ to $p(\boldsymbol{\theta} | \mathcal{D})$, where $\hat{\boldsymbol{\theta}}$ is a local mode. With a constant learning rate, the sequence of iterates $\{\boldsymbol{\theta}_s\}$ doesn't converge to a local optimum. However, they do lie along the periphery of a point of good generalization. \textbf{Stochastic Weight Averaging (SWA)} computes $\bar{\boldsymbol{\theta}} = \sum_{s = 1}^S \boldsymbol{\theta}_s$, which should produce better generalization.
     
     \begin{figure}
@@ -335,11 +335,11 @@ Their Siblings
     \end{figure}
 \end{frame}
 
-\begin{frame}{Methods based on the SGD trajectory}
+\begin{frame}{Methods Based on the SGD Trajectory}
     \textbf{Stochastic Weight Averaging with Gaussian Posterior (SWAG)} is an extension of SWA that approximates the posterior using a Gaussian distribution centered at the SWA solution. The approximation is $\mathcal{N}(\boldsymbol{\theta} | \hat{\boldsymbol{\theta}}, \boldsymbol{\Sigma})$, where $\hat{\boldsymbol{\theta}}$ is as on the previous slide and $\boldsymbol{\Sigma}$ is the sum of a diagonal matrix and a low-rank matrix computed from $\boldsymbol{\theta}_1, \ldots, \boldsymbol{\theta}_S$. SWAG can be used on large networks and offers improved accuracy.
 \end{frame}
 
-\begin{frame}{Deep ensembles}
+\begin{frame}{Deep Ensembles}
     Some methods approximate $p(\boldsymbol{\theta} | \mathcal{D})$ in a neighborhood of one of its modes. However, the posterior for a deep neural network could have many modes. Fitted functions at the same mode may be quite similar, while fitted functions at different modes may be very different. So, focusing on one mode can result in underestimation of uncertainty and poor generalization.
     
     \medskip
@@ -351,7 +351,7 @@ Their Siblings
     The multiple modes can be obtained by varying random seeds, hyperparameters, or architecture.
 \end{frame}
 
-\begin{frame}{Deep ensembles}
+\begin{frame}{Deep Ensembles}
     Below are some extensions of deep ensembles:
     \begin{itemize}
         \item \textbf{Multi-SWAG} uses Gaussian distributions instead of point masses:
@@ -363,7 +363,7 @@ Their Siblings
     \end{itemize}
 \end{frame}
 
-\begin{frame}{Approximating the posterior predictive distribution}
+\begin{frame}{Approximating the Posterior Predictive Distribution}
     Using one of the methods described on the preceding slides, we can compute an estimate $q(\boldsymbol{\theta})$ of $p(\boldsymbol{\theta} | \mathcal{D})$. Then
     \begin{align*}
         p(\boldsymbol{y} | \boldsymbol{x}, \mathcal{D}) &\approx \int q(\boldsymbol{\theta})p(\boldsymbol{y} | \boldsymbol{x}, \boldsymbol{\theta})\,d\boldsymbol{\theta} \\
@@ -372,7 +372,7 @@ Their Siblings
     where $\boldsymbol{\theta}^s \sim q(\boldsymbol{\theta})$.
 \end{frame}
 
-\begin{frame}{Generalization in Bayesian deep learning}
+\begin{frame}{Generalization in Bayesian Deep Learning}
     "Being Bayesian" can improve
     \begin{itemize}
         \item Predictive accuracy
@@ -380,7 +380,7 @@ Their Siblings
     \end{itemize}
 \end{frame}
 
-\begin{frame}{Sharp vs flat minima}
+\begin{frame}{Sharp and Flat Minima}
     A minimum of a loss function can be \textbf{sharp} or \textbf{flat}.
     \begin{itemize}
         \item At a sharp minimum, the function has a narrow, deep hole (Fig.~\ref{fig:sharp_minimum}).
@@ -406,7 +406,7 @@ Their Siblings
     \end{figure}
 \end{frame}
 
-\begin{frame}{Sharp vs flat minima}
+\begin{frame}{Sharp and Flat Minima}
     Flat minima are preferable to sharp minima for two reasons:
     \begin{itemize}
         \item A sharp minimum corresponds to a tiny loss, which is typically caused by overfitting.
@@ -418,7 +418,7 @@ Their Siblings
     \end{itemize}
 \end{frame}
 
-\begin{frame}{Sharp vs flat minima}
+\begin{frame}{Sharp and Flat Minima}
     SGD (Stochastic Gradient Descent) tends to avoid sharp minima:
     \begin{itemize}
         \item A sharp minimum is in a region $\mathcal{A}$ of low evidence.
@@ -428,7 +428,7 @@ Their Siblings
     This property is due to SGD's use of noise.
 \end{frame}
 
-\begin{frame}{Effective dimensionality of a model}
+\begin{frame}{The Effective Dimensionality of a Model}
     The \textbf{effective dimensionality} of a model reflects how many well-determined parameters it has. It is defined as
     \begin{equation*}
         N_{\text{eff}}(\boldsymbol{H}, c) = \sum_{i = 1}^k \frac{\lambda_i}{\lambda_i + c},
@@ -440,7 +440,7 @@ Their Siblings
     A low effective dimensionality implies that significant compression is possible. Also, the effective dimensionality is a good proxy for generalization.
 \end{frame}
 
-\begin{frame}{Effective dimensionality of a model}
+\begin{frame}{The Effective Dimensionality of a Model}
     Fig.~\ref{fig:effective_dimensionality_and_test_loss} illustrates the last point on the previous slide. For CNNs with near-zero training loss, the pattern in the test loss closely resembles that in the effective dimensionality.
     \begin{figure}
         \centering
@@ -450,7 +450,7 @@ Their Siblings
     \end{figure}    
 \end{frame}
 
-\begin{frame}{Double descent}
+\begin{frame}{Double Descent}
     For an \textbf{over-parameterized model}, there are many more parameters than training points. Surprisingly, instead of overfitting, these models often generalize well. As the number of parameters increases, we see \textbf{double descent}. The test error decreases, then increases, then decreases again, as shown in Fig.~\ref{fig:double_descent}.
     
     \begin{figure}
@@ -461,7 +461,7 @@ Their Siblings
     \end{figure}
 \end{frame}
 
-\begin{frame}{Double descent}
+\begin{frame}{Double Descent}
     Double descent can be alleviated by Bayesian model averaging. Fig.~\ref{fig:double_descent_and_bma} shows the test error of neural networks of various widths that were trained on CIFAR-100. SWAG mitigates double descent, while Multi-SWAG eliminates it.
     \begin{figure}
         \centering
@@ -471,7 +471,7 @@ Their Siblings
     \end{figure}
 \end{frame}
 
-\begin{frame}{Double descent}
+\begin{frame}{Double Descent}
     The effective dimensionality helps explain why double descent occurs. In Fig.~\ref{fig:double_descent_and_effective_dimensionality}, as the layer width increases, the effective dimensionality decreases, increases, and then decreases again. The lower the effective dimensionality, the better the model generalizes. This explains why the test error decreases, increases, and then decreases again.
     \begin{figure}
         \centering
@@ -504,7 +504,7 @@ Their Siblings
     Let $\boldsymbol{X} = \{\boldsymbol{x}_1, \ldots, \boldsymbol{x}_N\}$. Let $\boldsymbol{\mu}_X = (m(\boldsymbol{x}_1), \ldots, m(\boldsymbol{x}_N))$ and let $\boldsymbol{K}_{X, X}$ be the $N \times N$ matrix whose $(i, j)$-entry is $\mathcal{K}(\boldsymbol{x}_i, \boldsymbol{x}_j)$. Since $\boldsymbol{f}_X$ is multivariate Gaussian, $p(\boldsymbol{f}_X | \boldsymbol{X}) = \mathcal{N}(\boldsymbol{f}_X | \boldsymbol{\mu}_X, \boldsymbol{K}_{X, X})$.
 \end{frame}
 
-\begin{frame}{Mercer kernels}
+\begin{frame}{Mercer Kernels}
     The covariance function $\mathcal{K}$ of a GP is a \textbf{Mercer kernel}. In general, $\mathcal{K} : \mathcal{X} \times \mathcal{X} \to \mathbb{R}^+$ is a Mercer kernel if $\sum_{i = 1}^N \sum_{j = 1}^n \mathcal{K}(\boldsymbol{x}_i, \boldsymbol{x}_j)c_i c_j \ge 0$ for any distinct $\boldsymbol{x}_1, \ldots, \boldsymbol{x}_N \in \mathcal{X}$ and any $c_1, \ldots, c_N \in \mathbb{R}$.
     
     \medskip
@@ -556,7 +556,7 @@ Their Siblings
     Fitting the model entails calculating $\boldsymbol{\alpha}$. This can be done in $O(N^3)$ time using a Cholesky decomposition $\boldsymbol{L}\boldsymbol{L}^T$ of $\boldsymbol{K}_{\sigma}$. 
 \end{frame}
 
-\begin{frame}{Binary classification}
+\begin{frame}{Binary Classification}
     Suppose that $p(y_n | \boldsymbol{x}_n) = \text{Ber}(y_n | \varphi(f_n))$. We have
     \begin{align*}
         \mathcal{L}(\boldsymbol{f}_X) &= \log p(\boldsymbol{y}, \boldsymbol{f}_X | \boldsymbol{X}) \\
@@ -572,7 +572,7 @@ Their Siblings
     \]
 \end{frame}
 
-\begin{frame}{Binary classification}
+\begin{frame}{Binary Classification}
     Let $q(\boldsymbol{f}_X | \mathcal{D})$ be the approximation to the posterior. We can approximate the posterior predictive distribution as
     \[
     p(y_* = 1 | \boldsymbol{x}_*, \mathcal{D}) = \int p(y_* = 1 | f_*)q(\boldsymbol{f}_* | \boldsymbol{x}_*, \mathcal{D})\,df_*.
