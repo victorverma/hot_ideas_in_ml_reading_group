@@ -258,7 +258,7 @@ Their Siblings
 \end{frame}
 
 \begin{frame}{Learning the Prior}
-    In more general situations, there are a few approaches that can be taken to choosing a prior:
+    In more general situations, there are a few approaches to choosing a prior that can be taken:
     \begin{itemize}
         \item Cross-validation can be used to identify a good choice of hyperparameters, but it can be slow if there are many hyperparameters.
         \item An empirical Bayes approach can be taken. E.g., if the hyperparameters are $\boldsymbol{\alpha}$ and $\boldsymbol{\beta}$, we could find the values that maximize $\log p(\mathcal{D} | \boldsymbol{\alpha}, \boldsymbol{\beta}) = \int \log p(\mathcal{D} | \boldsymbol{\theta})p(\boldsymbol{\theta} | \boldsymbol{\alpha}, \boldsymbol{\beta})\,d\boldsymbol{\theta}$. However, this can be computationally difficult.
@@ -559,7 +559,7 @@ Their Siblings
         \nabla\mathcal{L}(\boldsymbol{f}_X) &= \nabla\log p(\boldsymbol{y} | \boldsymbol{f}_X) - \boldsymbol{K}_{X, X}^{-1}\boldsymbol{f}_X. \\
         \nabla^2 \mathcal{L}(\boldsymbol{f}_X) &= \nabla^2 \log p(\boldsymbol{y} | \boldsymbol{f}_X) - \boldsymbol{K}_{X, X}^{-1}.
     \end{align*}
-    Let $\boldsymbol{\Lambda} = -\nabla^2 \log p(\boldsymbol{y} | \boldsymbol{f}_X)$. Then $\nabla^2 \mathcal{L} = -\boldsymbol{\Lambda} - \boldsymbol{K}_{X, X}^{-1}$. Let $\hat{\boldsymbol{f}}$ be the MAP. We can now compute a Laplace approximation to the posterior:
+    Let $\boldsymbol{\Lambda} = -\nabla^2 \log p(\boldsymbol{y} | \boldsymbol{f}_X)$. Then $\nabla^2 \mathcal{L} = -\boldsymbol{\Lambda} - \boldsymbol{K}_{X, X}^{-1}$. Let $\hat{\boldsymbol{f}}$ be the MAP estimate. We can now compute a Laplace approximation to the posterior:
     \[
     p(\boldsymbol{f}_X | \mathcal{D}) \approx \mathcal{N}(\hat{\boldsymbol{f}}, -[\nabla^2 \mathcal{L}]^{-1}) = \mathcal{N}(\hat{\boldsymbol{f}}, (\boldsymbol{\Lambda} + \boldsymbol{K}_{X, X}^{-1})^{-1}).
     \]
