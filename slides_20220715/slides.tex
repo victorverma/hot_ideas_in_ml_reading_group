@@ -362,10 +362,10 @@ and Their Siblings
 \begin{frame}{Monte Carlo Dropout}
     \textbf{Monte Carlo Dropout} is a simple, popular method for estimating the posterior predictive distribution. It works as follows:
     \begin{itemize}
-        \item Before training, add dropout layers to the model.
+        \item Before training, add dropout layers to the model
         \item When testing, repeat this $S$ times:
         \begin{itemize}
-            \item Decide whether to drop a neuron by sampling from a $\text{Bernoulli}(p)$ distribution.
+            \item Decide whether to drop a neuron by sampling from a $\text{Bernoulli}(p)$ distribution. Dropping out a neuron means setting the weights of its outgoing edges to zero.
             \item Compute the posterior predictive distribution.
         \end{itemize}
         \item Average the $S$ posterior predictive distributions.
