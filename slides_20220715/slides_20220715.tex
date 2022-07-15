@@ -544,6 +544,19 @@ Their Siblings
     Fitting the model entails calculating $\boldsymbol{\alpha}$. This can be done in $O(N^3)$ time using a Cholesky decomposition $\boldsymbol{L}\boldsymbol{L}^T$ of $\boldsymbol{K}_{\sigma}$. 
 \end{frame}
 
+\begin{frame}{Scaling GP Inference to Large Datasets}
+    One approach for handling large datasets is the method of \textbf{inducing points}. Let $\boldsymbol{X}$ be the observed inputs and let $\boldsymbol{f}_X$ be their unknown function values. Let $\boldsymbol{Z}$ contain $M$ other inputs (the inducing points) with unknown function values $\boldsymbol{f}_Z$. Let $\boldsymbol{X}_*$ be the test points and let $\boldsymbol{f}_*$ be their unknown function values. Assume that $\boldsymbol{f}_* \perp \boldsymbol{f}_X | \boldsymbol{f}_Z$. We have
+    \begin{align*}
+        p(\boldsymbol{f}_*, \boldsymbol{f}_X, \boldsymbol{f}_Z) &= p(\boldsymbol{f}_* | \boldsymbol{f}_X, \boldsymbol{f}_Z)p(\boldsymbol{f}_X | \boldsymbol{f}_Z)p(\boldsymbol{f}_Z).
+    \end{align*}
+    This yields
+    \begin{align*}
+        p(\boldsymbol{f}_X | \boldsymbol{f}_Z) &= \mathcal{N}(\boldsymbol{f}_X | \boldsymbol{K}_{X, Z}\boldsymbol{K}_{Z, Z}^{-1}\boldsymbol{f}_Z, \boldsymbol{K}_{X, X} - \boldsymbol{Q}_{X, X}) \\
+        p(\boldsymbol{f}_* | \boldsymbol{f}_Z) &= \mathcal{N}(\boldsymbol{f}_* | \boldsymbol{K}_{*, Z}\boldsymbol{K}_{Z, Z}^{-1}\boldsymbol{f}_Z, \boldsymbol{K}_{*, *} - \boldsymbol{Q}_{*, *}).
+    \end{align*}
+    This approach has time complexity $O(M^3 + N M^2)$.
+\end{frame}
+
 \begin{frame}{Binary Classification}
     Suppose that $p(y_n | \boldsymbol{x}_n) = \text{Ber}(y_n | \varphi(f_n))$. We have
     \begin{align*}
